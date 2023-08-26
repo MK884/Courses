@@ -8,6 +8,8 @@ import { ReactComponent as Ins } from "../assets/instructor.svg";
 import { ReactComponent as Std } from "../assets/students.svg";
 import { ReactComponent as Video } from "../assets/video.svg";
 import { ReactComponent as Pepole } from "../assets/pepole.svg";
+import courses from "../courses.json"
+import instructors from "../instructors.json"
 
 import { ReactComponent as HtmlB } from "../assets/htmlB.svg";
 import { ReactComponent as BusinessB } from "../assets/businessB.svg";
@@ -29,44 +31,44 @@ import NextWeekOutlinedIcon from "@mui/icons-material/NextWeekOutlined";
 import CastForEducationOutlinedIcon from "@mui/icons-material/CastForEducationOutlined";
 
 const HomePage = () => {
-  const courses = [
-    {
-      id: 1,
-      title: "HTML Courses for Beginners",
-      thumbnail: <HtmlB/>,
-      category: "HTML",
-      ratings: 3.5,
-      review: "100",
-      price: "200",
-    },
-    {
-      id: 2,
-      title: "Make Business Courses for Beginners",
-      thumbnail: <BusinessB/>,
-      category: "Business",
-      ratings: 4.5,
-      review: "150",
-      price: "500",
-    },
-    {
-      id: 3,
-      title: "C++ Courses for Beginners",
-      thumbnail: <BusinessB2 />,
-      category: "Coding",
-      ratings: 5,
-      review: "1000",
-      price: "700",
-    },
-    {
-      id: 4,
-      title: "Design Courses for Beginners to experience",
-      thumbnail: <DesignB/>,
-      category: "Design",
-      ratings: 4,
-      review: "100",
-      price: "100",
-    },
-  ];
+  // const courses = [
+  //   {
+  //     id: 1,
+  //     title: "HTML Courses for Beginners",
+  //     thumbnail: <HtmlB/>,
+  //     category: "HTML",
+  //     ratings: 3.5,
+  //     review: "100",
+  //     price: "200",
+  //   },
+  //   {
+  //     id: 2,
+  //     title: "Make Business Courses for Beginners",
+  //     thumbnail: <BusinessB/>,
+  //     category: "Business",
+  //     ratings: 4.5,
+  //     review: "150",
+  //     price: "500",
+  //   },
+  //   {
+  //     id: 3,
+  //     title: "C++ Courses for Beginners",
+  //     thumbnail: <BusinessB2 />,
+  //     category: "Coding",
+  //     ratings: 5,
+  //     review: "1000",
+  //     price: "700",
+  //   },
+  //   {
+  //     id: 4,
+  //     title: "Design Courses for Beginners to experience",
+  //     thumbnail: <DesignB/>,
+  //     category: "Design",
+  //     ratings: 4,
+  //     review: "100",
+  //     price: "100",
+  //   },
+  // ];
 
   const category = [
     {
@@ -111,32 +113,32 @@ const HomePage = () => {
     },
   ];
 
-  const instructors =[
-    {
-      id:1,
-      name:'Jacob Jones',
-      title:'UI-UX Design Expart',
-      img:<Inst1/>,
-    },
-    {
-      id:2,
-      name:'Alice Michael',
-      title:'Social Media Expart',
-      img:<Inst2/>,
-    },
-    {
-      id:3,
-      name:'San Fero',
-      title:'Business Idea Expart',
-      img:<Inst3/>,
-    },
-    {
-      id:4,
-      name:'Adidas Co',
-      title:'Photograpy Expart',
-      img:<Inst4/>,
-    },
-  ];
+  // const instructors =[
+  //   {
+  //     id:1,
+  //     name:'Jacob Jones',
+  //     title:'UI-UX Design Expart',
+  //     img:<Inst1/>,
+  //   },
+  //   {
+  //     id:2,
+  //     name:'Alice Michael',
+  //     title:'Social Media Expart',
+  //     img:<Inst2/>,
+  //   },
+  //   {
+  //     id:3,
+  //     name:'San Fero',
+  //     title:'Business Idea Expart',
+  //     img:<Inst3/>,
+  //   },
+  //   {
+  //     id:4,
+  //     name:'Adidas Co',
+  //     title:'Photograpy Expart',
+  //     img:<Inst4/>,
+  //   },
+  // ];
   return (
     <Box
   

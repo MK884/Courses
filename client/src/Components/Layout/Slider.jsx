@@ -7,44 +7,150 @@ import {
   ListItemText,
   IconButton,
   ListItemIcon,
+  Box
 } from "@mui/material";
-import { ReactComponent  as TipsLogo} from "../../assets/tips.svg"
-
+import { ReactComponent as TipsLogo } from "../../assets/tips.svg";
+// icons
+import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
 import MenuIcon from "@mui/icons-material/Menu";
-const Slider = ({userIsLogin}) => {
+import GridViewIcon from "@mui/icons-material/GridView";
+import SchoolIcon from "@mui/icons-material/School";
+import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
+import NoteAddOutlinedIcon from "@mui/icons-material/NoteAddOutlined";
+import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
+import LayersIcon from "@mui/icons-material/Layers";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Rotate90DegreesCcw } from "@mui/icons-material";
+const Slider = ({ userIsLogin }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openHomeDrawer, setHomeOpenDrawer] = useState(false);
+  const navigate = useNavigate();
   const lists = ["Home", "About", "Contact", "Sign Up", "Login"];
-  const menu = ["Dashboard", "Classes", "Exams", "Logout"];
-  return userIsLogin ?(
+  const menu = [
+    {
+      title: "Dashboard",
+      icon: <GridViewIcon />,
+      path: "admin-dashboard",
+    },
+    {
+      title: "Classes",
+      icon: <SchoolIcon />,
+      path: "classes",
+    },
+    {
+      title: "Quizzes",
+      icon: <OnlinePredictionIcon />,
+      path: "quizzes",
+    },
+    {
+      title: "Exams",
+      icon: <NoteAddOutlinedIcon />,
+      path: "exams",
+    },
+    {
+      title: "Assignments",
+      icon: <NoteAltOutlinedIcon />,
+      path: "assignments",
+    },
+    {
+      title: "Batches",
+      icon: <LayersIcon />,
+      path: "batches",
+    },
+  ];
+  // const drawerWidth = () =>{
+  //   if(openHomeDrawer) return 64;
+  //   return 200;
+  // };
+  const [selectedIndex, setSelectedIndex] = React.useState(0);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
+  };
+  return userIsLogin ? (
     <>
-    <Drawer
-      anchor="left"
-      open={openHomeDrawer}
-      onClose={()=>setHomeOpenDrawer(false)}
-      sx={{
-      }}
-    >
-      <List>
-      {menu.map((menu, index) => (
-            <ListItemButton key={index}>
-              <ListItemText>{menu}</ListItemText>
-            </ListItemButton>
-          ))}
-      </List>
-    </Drawer>
-    <IconButton
+      <Drawer
+        anchor="left"
+        open={openHomeDrawer}
+        onClose={() => setHomeOpenDrawer(false)}
         sx={{
-          // marginLeft: "auto",
+          width: 240,
         }}
-        onClick={() => setHomeOpenDrawer(!openHomeDrawer)}
+        variant="permanent"
+        PaperProps={{
+          sx: { width: 240 },
+        }}
       >
-        <TipsLogo sx={{
-          margin:'auto',
-        }}/>
-      </IconButton>
+        <IconButton
+          onClick={() => setHomeOpenDrawer(!openHomeDrawer)}
+          sx={{
+            height: "4rem",
+          }}
+        >
+          <TipsLogo />
+        </IconButton>
+
+        <List>
+          {menu.map((menu, index) => (
+            <ListItem
+              sx={{
+                alignItems: "center",
+              }}
+            >
+              <ListItemButton
+                selected={selectedIndex === index}
+                sx={{
+                  borderRadius: "12px",
+                  padding: "1rem",
+                  color: selectedIndex === index ? "#2C62EE" : null,
+                  bgcolor: selectedIndex === index ? "#ECF1FF" : null,
+                  width: "10rem",
+                }}
+                key={index}
+                onClick={(event) => {
+                  handleListItemClick(event, index);
+                  navigate(menu.path, { replace: true });
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    color: selectedIndex === index ? "#2C62EE" : null,
+                  }}
+                >
+                  {menu.icon}
+                </ListItemIcon>
+                <ListItemText
+                  sx={{
+                    fontWeight: selectedIndex === index ? 800 : "normal",
+                  }}
+                >
+                  {menu.title}
+                </ListItemText>
+              </ListItemButton>
+            </ListItem>
+          ))}
+          
+          <ListItem >
+            <ListItemButton sx={{
+              borderRadius:'12px',
+              padding:'1rem',
+              bgcolor:"#FFEFEF",
+              color:"#F93333",
+            }}>
+              <ListItemIcon >
+                <PowerSettingsNewOutlinedIcon sx={{
+                  transform:"rotate(270deg)",
+                  color:"#F93333"
+                }}/>
+              </ListItemIcon>
+              <ListItemText>Logout</ListItemText>
+            </ListItemButton>
+          </ListItem>
+        </List>
+
+      </Drawer>
     </>
-  ): (
+  ) : (
     <>
       <Drawer
         anchor="left"
@@ -58,15 +164,16 @@ const Slider = ({userIsLogin}) => {
             </ListItemButton>
           ))}
         </List>
+        
+        <IconButton
+          sx={{
+            marginLeft: "auto",
+          }}
+          onClick={() => setOpenDrawer(!openDrawer)}
+        >
+          <MenuIcon />
+        </IconButton>
       </Drawer>
-      <IconButton
-        sx={{
-          marginLeft: "auto",
-        }}
-        onClick={() => setOpenDrawer(!openDrawer)}
-      >
-        <MenuIcon />
-      </IconButton>
     </>
   );
 };
