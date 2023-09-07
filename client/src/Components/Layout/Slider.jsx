@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 import { ReactComponent as TipsLogo } from "../../assets/tips.svg";
 // icons
+import BackHandOutlinedIcon from '@mui/icons-material/BackHandOutlined';
 import PowerSettingsNewOutlinedIcon from '@mui/icons-material/PowerSettingsNewOutlined';
 import MenuIcon from "@mui/icons-material/Menu";
 import GridViewIcon from "@mui/icons-material/GridView";
@@ -21,7 +22,7 @@ import NoteAltOutlinedIcon from "@mui/icons-material/NoteAltOutlined";
 import LayersIcon from "@mui/icons-material/Layers";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Rotate90DegreesCcw } from "@mui/icons-material";
-const Slider = ({ userIsLogin }) => {
+const Slider = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openHomeDrawer, setHomeOpenDrawer] = useState(false);
   const navigate = useNavigate();
@@ -30,44 +31,41 @@ const Slider = ({ userIsLogin }) => {
     {
       title: "Dashboard",
       icon: <GridViewIcon />,
-      path: "admin-dashboard",
+      path: "/admin/dashboard",
     },
     {
       title: "Classes",
       icon: <SchoolIcon />,
-      path: "classes",
+      path: "/admin/classes",
     },
     {
-      title: "Quizzes",
-      icon: <OnlinePredictionIcon />,
-      path: "quizzes",
+      title: "Attandance",
+      icon: <BackHandOutlinedIcon />,
+      path: "/admin/attandance",
     },
     {
       title: "Exams",
       icon: <NoteAddOutlinedIcon />,
-      path: "exams",
+      path: "/admin/exams",
     },
     {
       title: "Assignments",
       icon: <NoteAltOutlinedIcon />,
-      path: "assignments",
+      path: "/admin/assignments",
     },
     {
       title: "Batches",
       icon: <LayersIcon />,
-      path: "batches",
+      path: "/admin/batches",
     },
   ];
-  // const drawerWidth = () =>{
-  //   if(openHomeDrawer) return 64;
-  //   return 200;
-  // };
-  const [selectedIndex, setSelectedIndex] = React.useState(0);
+  
+  const [selectedIndex, setSelectedIndex] = React.useState();
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
   };
-  return userIsLogin ? (
+  return  (
     <>
       <Drawer
         anchor="left"
@@ -96,6 +94,7 @@ const Slider = ({ userIsLogin }) => {
               sx={{
                 alignItems: "center",
               }}
+              key={index}
             >
               <ListItemButton
                 selected={selectedIndex === index}
@@ -148,31 +147,6 @@ const Slider = ({ userIsLogin }) => {
           </ListItem>
         </List>
 
-      </Drawer>
-    </>
-  ) : (
-    <>
-      <Drawer
-        anchor="left"
-        open={openDrawer}
-        onClose={() => setOpenDrawer(false)}
-      >
-        <List>
-          {lists.map((list, index) => (
-            <ListItemButton key={index}>
-              <ListItemText>{list}</ListItemText>
-            </ListItemButton>
-          ))}
-        </List>
-        
-        <IconButton
-          sx={{
-            marginLeft: "auto",
-          }}
-          onClick={() => setOpenDrawer(!openDrawer)}
-        >
-          <MenuIcon />
-        </IconButton>
       </Drawer>
     </>
   );

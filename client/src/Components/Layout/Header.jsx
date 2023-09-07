@@ -29,8 +29,7 @@ import {
 import Slider from "./Slider";
 import { useNavigate } from "react-router-dom";
 
-const Header = ({ userIsLogin }) => {
-  const UserIsLogin = userIsLogin; // TO render different header according to user value
+const Header = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -53,10 +52,6 @@ const Header = ({ userIsLogin }) => {
     setOpen(false);
   };
 
-  function TabPanel(props) {
-    const { children, value, index } = props;
-    return <div>{index === value && children}</div>;
-  }
 
   const settings = ["Profile", "Class History", "Logout"];
 
@@ -72,7 +67,7 @@ const Header = ({ userIsLogin }) => {
 
 
 
-  return UserIsLogin ? (
+  return  (
     <AppBar
       position="fixed"
       elevation={0}
@@ -117,186 +112,6 @@ const Header = ({ userIsLogin }) => {
         </Box>
       </Toolbar>
     </AppBar>
-  ) : (
-    <>
-      <AppBar
-        position="sticky"
-        elevation={0}
-        sx={{
-          bgcolor: "#fff",
-        }}
-      >
-        <Toolbar>
-          <Typography
-            variant="h4"
-            sx={{
-              marginLeft: "10px",
-              color: "#7286D3",
-            }}
-          >
-            COURSES
-          </Typography>
-          {isMatch ? (
-            <Slider />
-          ) : (
-            <>
-              <Tabs
-                onChange={(e, value) => setValue(value)}
-                value={value}
-                sx={{ marginLeft: "auto" }}
-                indicatorColor="#7286D3"
-              >
-                <Tab label="Home" />
-              </Tabs>
-              <Button
-                sx={{ marginLeft: "auto", marginRight: "10px" }}
-                onClick={handleClickOpenLogin}
-              >
-                Login
-              </Button>
-              <Button variant="contained" onClick={handleClickOpen}>
-                Sign Up
-              </Button>
-              <Dialog
-                fullScreen={isMatch}
-                open={open}
-                onClose={handleClickClose}
-                fullWidth
-              >
-                <DialogTitle>Sign Up Form</DialogTitle>
-                <DialogContent>
-                  <Box
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                    margin="1rem"
-                    display="flex"
-                    flexWrap="wrap"
-                    flexDirection="column"
-                    gap={4}
-                  >
-                    <TextField
-                      label="First Name"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField label="Last Name" variant="outlined" fullWidth />
-                    <TextField
-                      label="Phone Number"
-                      type="number"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      label="Email"
-                      type="email"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      label="Password"
-                      type="password"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      label="Confirm Password"
-                      type="password"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      label="Role"
-                      helperText="Please Select Your Role"
-                      select
-                      variant="outlined"
-                      fullWidth
-                    >
-                      <MenuItem key={1} value={1}>
-                        Student
-                      </MenuItem>
-                      <MenuItem key={2} value={2}>
-                        Instructor
-                      </MenuItem>
-                    </TextField>
-                  </Box>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={() => {
-                    setOpen(false);
-                    userIsLogin=true;
-                    naviagete("/admin-dashboard")}} autoFocus>
-                    Sign Up
-                  </Button>
-                </DialogActions>
-              </Dialog>
-              <Dialog
-                fullScreen={isMatch}
-                open={openLogin}
-                onClose={handleClickCloseLogin}
-              >
-                <DialogTitle>Login Form</DialogTitle>
-                <DialogContent>
-                  <Box
-                    component="form"
-                    noValidate
-                    autoComplete="off"
-                    margin="1rem"
-                    display="flex"
-                    flexWrap="wrap"
-                    flexDirection="column"
-                    gap={4}
-                  >
-                    <TextField
-                      type="mail"
-                      label="Email"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      type="password"
-                      label="Password"
-                      variant="outlined"
-                      fullWidth
-                    />
-                    <TextField
-                      label="Role"
-                      select
-                      variant="outlined"
-                      fullWidth
-                      helperText="Please Select Your Role"
-                    >
-                      <MenuItem key={1} value={1}>
-                        Student
-                      </MenuItem>
-                      <MenuItem key={2} value={2}>
-                        Instructor
-                      </MenuItem>
-                    </TextField>
-                  </Box>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={() => {
-                    setOpenLogin(false);
-                    naviagete("/admin-dashboard")}} autoFocus>
-                    Login
-                  </Button>
-                </DialogActions>
-              </Dialog>
-            </>
-          )}
-        </Toolbar>
-      </AppBar>
-      {/* <TabPanel value={value} index={0}>
-        <Home />
-      </TabPanel> */}
-      {/* <TabPanel value={value} index={1}>
-        <About />
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        <Contact />
-      </TabPanel> */}
-    </>
   );
 };
 
