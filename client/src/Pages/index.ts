@@ -5,8 +5,9 @@ import Classes from "./Classes";
 import Exams from "./Exams";
 import Batches from "./Batches";
 import Assignments from "./Assigments";
-import Attandance from "./Attandance";
+import Attendance from "./Attendance";
 import Login from "./Login";
+import CreateAttendance from "./CreateAttendance";
 export { 
     Home, 
     LandingPage, 
@@ -15,6 +16,7 @@ export {
     Exams,
     Batches,
     Assignments,
-    Attandance, 
+    Attendance, 
     Login,
+    CreateAttendance,
 };

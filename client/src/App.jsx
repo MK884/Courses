@@ -7,10 +7,11 @@ import {
   AdminDashboard,
   Classes,
   Exams,
-  Attandance,
+  Attendance,
   Batches,
   Assignments,
   Home,
+  CreateAttendance,
 } from "./Pages/index.ts";
 import { Layout } from "./Components/Layout/index.ts";
 function App() {
@@ -26,11 +27,12 @@ function App() {
               <Layout>
                 <Routes>
                   <Route path="/dashboard" element={<AdminDashboard />} />
-                  <Route path="/classes" element={<Classes />} />
-                  <Route path="/exams" element={<Exams />} />
-                  <Route path="/attandance" element={<Attandance />} />
+                  <Route path="/resulte" element={<Classes />} />
+                  <Route path="/notice" element={<Exams />} />
+                  <Route path="/attendance" element={<Attendance />} />
                   <Route path="/batches" element={<Batches />} />
                   <Route path="/assignments" element={<Assignments />} />
+                  <Route path="/create-attendance" element={<CreateAttendance />} />
                 </Routes>
               </Layout>
             }

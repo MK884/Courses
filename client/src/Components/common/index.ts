@@ -1,4 +1,4 @@
-import AttandanceList from "./AttandanceList";
+import AttendanceList from "./AttendanceList";
 export {
-    AttandanceList,
+    AttendanceList,
 }

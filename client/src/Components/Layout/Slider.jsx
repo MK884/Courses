@@ -34,19 +34,9 @@ const Slider = () => {
       path: "/admin/dashboard",
     },
     {
-      title: "Classes",
-      icon: <SchoolIcon />,
-      path: "/admin/classes",
-    },
-    {
-      title: "Attandance",
+      title: "Attendance",
       icon: <BackHandOutlinedIcon />,
-      path: "/admin/attandance",
-    },
-    {
-      title: "Exams",
-      icon: <NoteAddOutlinedIcon />,
-      path: "/admin/exams",
+      path: "/admin/attendance",
     },
     {
       title: "Assignments",
@@ -57,6 +47,16 @@ const Slider = () => {
       title: "Batches",
       icon: <LayersIcon />,
       path: "/admin/batches",
+    },
+    {
+      title: "Resulte",
+      icon: <SchoolIcon />,
+      path: "/admin/resulte",
+    },
+    {
+      title: "Notice",
+      icon: <NoteAddOutlinedIcon />,
+      path: "/admin/notice",
     },
   ];
   
