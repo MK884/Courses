@@ -31,32 +31,32 @@ const Slider = () => {
     {
       title: "Dashboard",
       icon: <GridViewIcon />,
-      path: "/admin/dashboard",
+      path: "/instructor/dashboard",
     },
     {
       title: "Attendance",
       icon: <BackHandOutlinedIcon />,
-      path: "/admin/attendance",
+      path: "/instructor/attendance",
     },
     {
       title: "Assignments",
       icon: <NoteAltOutlinedIcon />,
-      path: "/admin/assignments",
+      path: "/instructor/assignments",
     },
     {
       title: "Batches",
       icon: <LayersIcon />,
-      path: "/admin/batches",
+      path: "/instructor/batches",
     },
     {
       title: "Resulte",
       icon: <SchoolIcon />,
-      path: "/admin/resulte",
+      path: "/instructor/resulte",
     },
     {
       title: "Notice",
       icon: <NoteAddOutlinedIcon />,
-      path: "/admin/notice",
+      path: "/instructor/notice",
     },
   ];
   

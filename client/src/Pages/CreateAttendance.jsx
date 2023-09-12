@@ -68,7 +68,7 @@ const CreateAttendance = () => {
         <Toolbar>
           <Tooltip title="back">
             <IconButton
-              onClick={() => navigate("/admin/attendance", { replace: true })}
+              onClick={() => navigate("/instructor/attendance", { replace: true })}
               sx={{
                 marginLeft: "-2rem",
                 marginRight: "1rem",
@@ -115,7 +115,7 @@ const CreateAttendance = () => {
             </FormControl>
             <Button
               variant="contained"
-              onClick={() => navigate("/admin/attendance", { replace: true })}
+              onClick={() => navigate("/instructor/attendance", { replace: true })}
               sx={{
                 marginLeft: "auto",
               }}

@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Routes, Router } from "react-router-dom";
 import {
   Login,
   Signup,
-  AdminDashboard,
+  InstructorDashboard,
   Classes,
   Exams,
   Attendance,
@@ -22,11 +22,11 @@ function App() {
           <Route path="/" element={<Login />} />
 
           <Route
-            path="/admin/*"
+            path="/instructor/*"
             element={
               <Layout>
                 <Routes>
-                  <Route path="/dashboard" element={<AdminDashboard />} />
+                  <Route path="/dashboard" element={<InstructorDashboard />} />
                   <Route path="/resulte" element={<Classes />} />
                   <Route path="/notice" element={<Exams />} />
                   <Route path="/attendance" element={<Attendance />} />

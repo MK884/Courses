@@ -1,6 +1,6 @@
 import Home from "./Home";
 import LandingPage from "./LandingPage";
-import AdminDashboard from "./AdminDashboard";
+import InstructorDashboard from "./InstructorDashboard";
 import Classes from "./Classes";
 import Exams from "./Exams";
 import Batches from "./Batches";
@@ -11,7 +11,7 @@ import CreateAttendance from "./CreateAttendance";
 export { 
     Home, 
     LandingPage, 
-    AdminDashboard,
+    InstructorDashboard,
     Classes,
     Exams,
     Batches,

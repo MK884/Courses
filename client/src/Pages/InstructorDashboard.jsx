@@ -29,7 +29,7 @@ const clerkColumns = [
 const clerkRows = [
   {id:1,fullName:'Snow John', age:30, department:'Computer',joinDate:'22/03/2015',address:'tfete etdtde gvtetde tdvted'},
 ]
-const AdminDashboard = () => {
+const InstructorDashboard = () => {
   return (
     <>
       <Box
@@ -221,4 +221,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default InstructorDashboard;
