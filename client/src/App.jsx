@@ -12,6 +12,7 @@ import {
   Assignments,
   Home,
   CreateAttendance,
+  CreateAssignment,
 } from "./Pages/index.ts";
 import { Layout } from "./Components/Layout/index.ts";
 function App() {
@@ -33,6 +34,7 @@ function App() {
                   <Route path="/batches" element={<Batches />} />
                   <Route path="/assignments" element={<Assignments />} />
                   <Route path="/create-attendance" element={<CreateAttendance />} />
+                  <Route path="/create-assignment" element={<CreateAssignment />} />
                 </Routes>
               </Layout>
             }

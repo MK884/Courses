@@ -301,7 +301,7 @@ const Assigments = () => {
               </Box>
             </TabPanel>
             <TabPanel value={value} page={2}>
-            <Box
+              <Box
                 sx={{
                   height: "50rem",
                   overflowY: "scroll",
@@ -323,7 +323,8 @@ const Assigments = () => {
                     type={"history"}
                   />
                 ))}
-              </Box>            </TabPanel>
+              </Box>{" "}
+            </TabPanel>
           </Box>
         </Box>
       </Box>

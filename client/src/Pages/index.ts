@@ -8,6 +8,7 @@ import Assignments from "./Assigments";
 import Attendance from "./Attendance";
 import Login from "./Login";
 import CreateAttendance from "./CreateAttendance";
+import CreateAssignment from "./CreateAssignment";
 export { 
     Home, 
     LandingPage, 
@@ -19,4 +20,5 @@ export {
     Attendance, 
     Login,
     CreateAttendance,
+    CreateAssignment,
 };

@@ -7,12 +7,16 @@ import {
   Drawer,
   IconButton,
   Box,
-  Input,
   TextField,
   TextareaAutosize,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogContentText,
+  DialogActions,
 } from "@mui/material";
 import React from "react";
-import CloseIcon from "@mui/icons-material/Close";
+import UpdateOutlinedIcon from '@mui/icons-material/UpdateOutlined';import CloseIcon from "@mui/icons-material/Close";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import Table from "@mui/material/Table";
@@ -21,6 +25,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
+import FileDownloadOutlinedIcon from '@mui/icons-material/FileDownloadOutlined';
+
 
 function createData(rollNumber, name) {
   return { rollNumber, name };
@@ -54,7 +60,20 @@ const AssignmentCard = ({
   const [openResult, setOpenResult] = React.useState(false);
   const [openHistory, setOpenHistory] = React.useState(false);
   const [isActive, setIsActive] = React.useState(true);
-  const [addNote, setAddNote] = React.useState(false);
+  const [publish, setPublish] = React.useState(false);
+
+  const handlePublishOpen = () => {
+    setPublish(true);
+  }
+  const handlePublishClose = () => {
+    setPublish(false);
+    
+  }
+  const OnPublish = () => {
+    setPublish(false);
+    setOpenResult(false);
+    
+  }
 
   return (
     <>
@@ -329,6 +348,19 @@ const AssignmentCard = ({
               <Button color="success">Completed : 55</Button>
               <Button color="warning">Pending : 15</Button>
             </Stack>
+            <Typography marginTop={5} fontWeight={450} fontSize={20}>
+              Resourses
+            </Typography>
+            <Stack
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: 8,
+                marginTop: "1rem",
+              }}
+            >
+              <Button color="info" variant='outlined'>Assignment..pdf</Button>
+            </Stack>
           </Box>
         </Drawer>
 
@@ -368,10 +400,10 @@ const AssignmentCard = ({
               }}
             >
               <Button
-                variant={isActive ? "contained": "outlined"}
+                variant={isActive ? "contained" : "outlined"}
                 sx={{
-                  fontWeight:'light',
-                  padding:'10px 4rem'
+                  fontWeight: "light",
+                  padding: "10px 4rem",
                 }}
                 onClick={() => {
                   setIsActive(!isActive);
@@ -380,12 +412,11 @@ const AssignmentCard = ({
                 Details
               </Button>
               <Button
-                variant={!isActive ? "contained": "outlined"}
+                variant={!isActive ? "contained" : "outlined"}
                 sx={{
-                  fontWeight:'light',
-                  padding:'10px 4rem',
+                  fontWeight: "light",
+                  padding: "10px 4rem",
                 }}
-                
                 onClick={() => {
                   setIsActive(!isActive);
                 }}
@@ -515,65 +546,104 @@ const AssignmentCard = ({
                   <Button color="success">Completed : 55</Button>
                   <Button color="warning">Pending : 15</Button>
                 </Stack>
+                <Typography marginTop={5} fontWeight={450} fontSize={20}>
+              Resourses
+            </Typography>
+            <Stack
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                gap: 8,
+                marginTop: "1rem",
+              }}
+            >
+              <Button color="info" variant='outlined'>Assignment..pdf</Button>
+            </Stack>
               </>
             ) : (
               <>
                 <TableContainer
-            component={Paper}
-            sx={{
-              overflowY: "scroll",
-              height: 700,
-            }}
-            
-          >
-            <Table stickyHeader >
-              <TableHead>
-                <TableRow>
-                  <TableCell>Roll Number</TableCell>
-                  <TableCell>Student Name</TableCell>
-                  <TableCell>Attachements</TableCell>
-                  <TableCell>Marks</TableCell>
-                  <TableCell>Action</TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {rows.map((row) => (
-                  <TableRow
-                    key={row.rollNumber}                    
-                  >
-                    <TableCell component="th" scope="row">
-                      {row.rollNumber}
-                    </TableCell>
+                  component={Paper}
+                  sx={{
+                    overflowY: "scroll",
+                    height: 700,
+                  }}
+                >
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Roll Number</TableCell>
+                        <TableCell>Student Name</TableCell>
+                        <TableCell>Attachements</TableCell>
+                        <TableCell>Marks</TableCell>
+                        <TableCell>Action</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map((row) => (
+                        <TableRow key={row.rollNumber}>
+                          <TableCell component="th" scope="row">
+                            {row.rollNumber}
+                          </TableCell>
 
-                    <TableCell component="th" scope="row">
-                      {row.name}
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      <Button variant='outlined' sx={{
-                        borderColor:'#EDEDF5',
-                        '&hover':{
-                          borderColor:'#EDEDF5',
-                        }
-                      }}>Assignment....pdf</Button>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      <TextField variant='outlined'></TextField>
-                    </TableCell>
-                    <TableCell component="th" scope="row">
-                      <Button variant="outlined" onClick={()=>setAddNote(!addNote)}>Add Note</Button>
-                      <Button >Save</Button>
-                      {(addNote) ? <TextareaAutosize></TextareaAutosize>:null}  
-                    </TableCell>
-                    
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-          <Button variant='contained' sx={{
-            padding:'10px',
-            marginTop:'2rem'
-          }}>Publish Result</Button>
+                          <TableCell component="th" scope="row">
+                            {row.name}
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            <Button
+                              variant="outlined"
+                              sx={{
+                                borderColor: "#EDEDF5",
+                                "&hover": {
+                                  borderColor: "#EDEDF5",
+                                },
+                              }}
+                            >
+                              Assignment....pdf
+                            </Button>
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            <TextField variant="outlined" type='number' helperText="Out of 50" 
+                             ></TextField>
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            <Button>Save</Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                <Button
+                  variant="contained"
+                  sx={{
+                    padding: "10px",
+                    marginTop: "2rem",
+                  }}
+                  onClick={handlePublishOpen}
+                >
+                  Publish Result
+                </Button>
+                <Dialog
+                  open={publish}
+                  onClose={handlePublishClose}
+                >
+                  <DialogTitle id="alert-dialog-title">Publish Result  </DialogTitle>
+                  <DialogContent>
+                    <DialogContentText>
+                      Are you sure you want to publish the Result of <Typography fontWeight={1000}>"{title}"</Typography>
+                    </DialogContentText>
+                  </DialogContent>
+                  <DialogActions >
+                    <Button variant='outlined' sx={{
+                      fontWeight:'light',
+                    }} onClick={handlePublishClose}>No</Button>
+                    <Button variant='contained' sx={{
+                      fontWeight:'light',
+                    }} onClick={OnPublish} autoFocus>Publish</Button>
+                  </DialogActions>
+
+                </Dialog>
               </>
             )}
           </Box>
@@ -585,7 +655,7 @@ const AssignmentCard = ({
           open={openHistory}
           onClose={() => setOpenHistory(false)}
           PaperProps={{
-            sx: { width: 700, borderRadius: "15px 0px 0px 15px" },
+            sx: { width: 1000, borderRadius: "15px 0px 0px 15px" },
           }}
         >
           <IconButton
@@ -602,116 +672,167 @@ const AssignmentCard = ({
             }}
           >
             <Typography fontWeight={500} fontSize={32}>
+              History
+            </Typography>
+            <Typography fontWeight={500} marginTop={2} fontSize={24}>
               {title}
             </Typography>
-            <Typography fontSize={20} fontWeight={450} marginTop={5}>
-              Course: {course}
-            </Typography>
-            <Typography fontSize={20} fontWeight={450}>
-              Subject : {subject}
-            </Typography>
-            <Typography fontSize={20} fontWeight={450}>
-              Batch : {batch}
-            </Typography>
             <Stack
-              marginTop={8}
               sx={{
                 display: "flex",
                 flexDirection: "row",
-                alignItems: "center",
+                margin: "2rem 0rem",
               }}
             >
-              <Typography fontSize={24} fontWeight={500}>
-                Total Marks : 50
-              </Typography>
+              <Button
+                variant={isActive ? "contained" : "outlined"}
+                sx={{
+                  fontWeight: "light",
+                  padding: "10px 4rem",
+                }}
+                onClick={() => {
+                  setIsActive(!isActive);
+                }}
+              >
+                Details
+              </Button>
+              <Button
+                variant={!isActive ? "contained" : "outlined"}
+                sx={{
+                  fontWeight: "light",
+                  padding: "10px 4rem",
+                }}
+                onClick={() => {
+                  setIsActive(!isActive);
+                }}
+              >
+                Result
+              </Button>
+            </Stack>
+            {isActive ? (
+              <>
+                <Typography fontSize={20} fontWeight={450} marginTop={5}>
+                  Course: {course}
+                </Typography>
+                <Typography fontSize={20} fontWeight={450}>
+                  Subject : {subject}
+                </Typography>
+                <Typography fontSize={20} fontWeight={450}>
+                  Batch : {batch}
+                </Typography>
+                <Stack
+                  marginTop={8}
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                  }}
+                >
+                  <Typography fontSize={24} fontWeight={500}>
+                    Total Marks : 50
+                  </Typography>
 
-              <Button
-                sx={{
-                  marginLeft: "auto",
-                }}
-              >
-                Passing Percentage : {percentage}%
-              </Button>
-            </Stack>
-            <Typography
-              marginTop={6}
-              fontWeight={400}
-              fontSize={18}
-              marginBottom={1}
-            >
-              Schedule
-            </Typography>
-            <Stack
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 5,
-              }}
-            >
-              <Button
-                startIcon={<CalendarMonthIcon />}
-                sx={{
-                  color: "black",
-                  bgcolor: "#EDEDF5",
-                  padding: "8px 10px",
-                  borderRadius: "6px",
-                }}
-              >
-                {date}
-              </Button>
-              <Button
-                sx={{
-                  color: "black",
-                  bgcolor: "#EDEDF5",
-                  padding: "8px 10px",
-                  borderRadius: "6px",
-                }}
-                startIcon={<AccessTimeFilledIcon />}
-              >
-                {time}
-              </Button>
-            </Stack>
-            <Typography
-              marginTop={6}
-              fontWeight={400}
-              fontSize={18}
-              marginBottom={1}
-            >
-              Due Date
-            </Typography>
-            <Stack
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                gap: 5,
-                marginBottom: "5px",
-              }}
-            >
-              <Button
-                startIcon={<CalendarMonthIcon />}
-                sx={{
-                  color: "black",
-                  bgcolor: "#EDEDF5",
-                  padding: "8px 10px",
-                  borderRadius: "6px",
-                }}
-              >
-                {date}
-              </Button>
-              <Button
-                sx={{
-                  color: "black",
-                  bgcolor: "#EDEDF5",
-                  padding: "8px 10px",
-                  borderRadius: "6px",
-                }}
-                startIcon={<AccessTimeFilledIcon />}
-              >
-                {time}
-              </Button>
-            </Stack>
-            <Typography marginTop={10} fontWeight={450} fontSize={20}>
-              Student Status
+                  <Button
+                    sx={{
+                      marginLeft: "auto",
+                    }}
+                  >
+                    Passing Percentage : {percentage}%
+                  </Button>
+                </Stack>
+                <Typography
+                  marginTop={6}
+                  fontWeight={400}
+                  fontSize={18}
+                  marginBottom={1}
+                >
+                  Schedule
+                </Typography>
+                <Stack
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 5,
+                  }}
+                >
+                  <Button
+                    startIcon={<CalendarMonthIcon />}
+                    sx={{
+                      color: "black",
+                      bgcolor: "#EDEDF5",
+                      padding: "8px 10px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    {date}
+                  </Button>
+                  <Button
+                    sx={{
+                      color: "black",
+                      bgcolor: "#EDEDF5",
+                      padding: "8px 10px",
+                      borderRadius: "6px",
+                    }}
+                    startIcon={<AccessTimeFilledIcon />}
+                  >
+                    {time}
+                  </Button>
+                </Stack>
+                <Typography
+                  marginTop={6}
+                  fontWeight={400}
+                  fontSize={18}
+                  marginBottom={1}
+                >
+                  Due Date
+                </Typography>
+                <Stack
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 5,
+                    marginBottom: "5px",
+                  }}
+                >
+                  <Button
+                    startIcon={<CalendarMonthIcon />}
+                    sx={{
+                      color: "black",
+                      bgcolor: "#EDEDF5",
+                      padding: "8px 10px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    {date}
+                  </Button>
+                  <Button
+                    sx={{
+                      color: "black",
+                      bgcolor: "#EDEDF5",
+                      padding: "8px 10px",
+                      borderRadius: "6px",
+                    }}
+                    startIcon={<AccessTimeFilledIcon />}
+                  >
+                    {time}
+                  </Button>
+                </Stack>
+                <Typography marginTop={10} fontWeight={450} fontSize={20}>
+                  Student Status
+                </Typography>
+                <Stack
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    gap: 8,
+                    marginTop: "1rem",
+                  }}
+                >
+                  <Button color="success">Completed : 55</Button>
+                  <Button color="warning">Pending : 15</Button>
+                </Stack>
+                <Typography marginTop={5} fontWeight={450} fontSize={20}>
+              Resourses
             </Typography>
             <Stack
               sx={{
@@ -721,9 +842,66 @@ const AssignmentCard = ({
                 marginTop: "1rem",
               }}
             >
-              <Button color="success">Completed : 55</Button>
-              <Button color="warning">Pending : 15</Button>
+              <Button color="info" variant='outlined'>Assignment..pdf</Button>
             </Stack>
+              </>
+            ) : (
+              <>
+                <TableContainer
+                  component={Paper}
+                  sx={{
+                    overflowY: "scroll",
+                    height: 700,
+                  }}
+                >
+                  <Table stickyHeader>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Roll Number</TableCell>
+                        <TableCell>Student Name</TableCell>
+                        <TableCell>Attachements</TableCell>
+                        <TableCell>Marks</TableCell>
+                        <TableCell>Action</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map((row) => (
+                        <TableRow key={row.rollNumber}>
+                          <TableCell component="th" scope="row">
+                            {row.rollNumber}
+                          </TableCell>
+
+                          <TableCell component="th" scope="row">
+                            {row.name}
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            <Button
+                              variant="outlined"
+                              sx={{
+                                borderColor: "#EDEDF5",
+                                "&hover": {
+                                  borderColor: "#EDEDF5",
+                                },
+                              }}
+                              endIcon={<FileDownloadOutlinedIcon/>}
+                            >
+                              Download
+                            </Button>
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            <TextField type="number" helperText="Out of 50" value={34} />
+                          </TableCell>
+                          <TableCell component="th" scope="row">
+                            <Button startIcon={<UpdateOutlinedIcon/>} variant='outlined'>Update</Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                              
+              </>
+            )}
           </Box>
         </Drawer>
       </Paper>
