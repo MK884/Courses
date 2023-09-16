@@ -28,11 +28,7 @@ const Slider = () => {
   const navigate = useNavigate();
   const lists = ["Home", "About", "Contact", "Sign Up", "Login"];
   const menu = [
-    {
-      title: "Dashboard",
-      icon: <GridViewIcon />,
-      path: "/instructor/dashboard",
-    },
+    
     {
       title: "Attendance",
       icon: <BackHandOutlinedIcon />,

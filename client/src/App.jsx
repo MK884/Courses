@@ -27,7 +27,6 @@ function App() {
             element={
               <Layout>
                 <Routes>
-                  <Route path="/dashboard" element={<InstructorDashboard />} />
                   <Route path="/resulte" element={<Classes />} />
                   <Route path="/notice" element={<Exams />} />
                   <Route path="/attendance" element={<Attendance />} />
