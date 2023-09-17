@@ -35,7 +35,7 @@ const Header = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
 
   const [open, setOpen] = useState(false);
-  const naviagete = useNavigate();
+  const navigate = useNavigate();
   const [openLogin, setOpenLogin] = useState(false);
 
   const handleClickOpenLogin = () => {
@@ -53,12 +53,16 @@ const Header = () => {
   };
 
 
-  const settings = ["Profile", "Class History", "Logout"];
+  const settings = ["Profile"];
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
   const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+  const handleProfileMenu = () => {
+    navigate("/instructor/profile",{replace:true});
     setAnchorElUser(null);
   };
 
@@ -104,7 +108,7 @@ const Header = () => {
             onClose={handleCloseUserMenu}
           >
             {settings.map((setting) => (
-              <MenuItem key={setting} onClick={handleCloseUserMenu}>
+              <MenuItem key={setting} onClick={handleProfileMenu}>
                 <Typography textAlign="center">{setting}</Typography>
               </MenuItem>
             ))}

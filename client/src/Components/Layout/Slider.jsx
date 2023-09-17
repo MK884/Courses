@@ -44,11 +44,11 @@ const Slider = () => {
       icon: <LayersIcon />,
       path: "/instructor/batches",
     },
-    {
-      title: "Resulte",
-      icon: <SchoolIcon />,
-      path: "/instructor/resulte",
-    },
+    // {
+    //   title: "Result",
+    //   icon: <SchoolIcon />,
+    //   path: "/instructor/result",
+    // },
     {
       title: "Notice",
       icon: <NoteAddOutlinedIcon />,

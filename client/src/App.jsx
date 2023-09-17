@@ -5,8 +5,9 @@ import {
   Login,
   Signup,
   InstructorDashboard,
-  Classes,
-  Exams,
+  Result,
+  InstructorProfile,
+  Notice,
   Attendance,
   Batches,
   Assignments,
@@ -27,9 +28,10 @@ function App() {
             element={
               <Layout>
                 <Routes>
-                  <Route path="/resulte" element={<Classes />} />
-                  <Route path="/notice" element={<Exams />} />
+                  <Route path="/result" element={<Result />} />
+                  <Route path="/notice" element={<Notice />} />
                   <Route path="/attendance" element={<Attendance />} />
+                  <Route path="/profile" element={<InstructorProfile />} />
                   <Route path="/batches" element={<Batches />} />
                   <Route path="/assignments" element={<Assignments />} />
                   <Route path="/create-attendance" element={<CreateAttendance />} />
