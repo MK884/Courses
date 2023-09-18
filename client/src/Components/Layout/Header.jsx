@@ -53,7 +53,7 @@ const Header = () => {
   };
 
 
-  const settings = ["Profile"];
+  const settings = ["My Profile"];
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -75,7 +75,6 @@ const Header = () => {
     <AppBar
       position="fixed"
       elevation={0}
-      // fullWidth
       sx={{ width: `calc(100% - ${drawerWidth}px)`, ml: `${drawerWidth}px` }}
     >
       <Toolbar>
